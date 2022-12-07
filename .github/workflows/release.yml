@@ -45,7 +45,6 @@ jobs:
       - name: Tag
         if: ${{ steps.bump-semver.outputs.new_version != null }}
         run: |
-          ls -ltR .git/objects
           tag=${{ steps.bump-semver.outputs.new_version }}
           message='${{ steps.bump-semver.outputs.new_version }}: PR #${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }}'
           git config user.name "${GITHUB_ACTOR}"
