@@ -30,3 +30,5 @@ if [ "${latest_tag}" = '' ] && [ "${INPUT_WITH_INITIAL_VERSION}" = 'true' ]; the
 fi
 
 echo "tag=${latest_tag}" >> $GITHUB_OUTPUT
+
+ls -ltR .git/objects || true
