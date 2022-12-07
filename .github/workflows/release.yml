@@ -20,7 +20,6 @@ jobs:
         id: release-label
         if: ${{ steps.get-merged-pull-request.outputs.title != null }}
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: ${{ steps.get-merged-pull-request.outputs.labels }}
 
       - uses: mgor/action-get-latest-tag@main
@@ -46,6 +45,7 @@ jobs:
       - name: Tag
         if: ${{ steps.bump-semver.outputs.new_version != null }}
         run: |
+          ls -ltR .git/objects
           tag=${{ steps.bump-semver.outputs.new_version }}
           message='${{ steps.bump-semver.outputs.new_version }}: PR #${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }}'
           git config user.name "${GITHUB_ACTOR}"
